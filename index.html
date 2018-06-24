@@ -5,6 +5,7 @@
     <mate name-"viewport" content="width=device-width, initial-scale=1.0">
     <title>Matching Game</title>
     <meta name="description" content="">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
     <link rel="stylesheet" href="css/app.css">
@@ -18,8 +19,11 @@
         </header>
 
         <section class="score-panel">
-
-          <span class="clock">0:00</span>
+          <div class="timer">
+            Game Time -
+            <span id="minutes">00</span> :
+            <span id="seconds">00</span>
+          </div>
 
         	<ul class="stars">
         		<li><i class="fa fa-star"></i></li>
@@ -27,13 +31,14 @@
         		<li><i class="fa fa-star"></i></li>
         	</ul>
 
-        	<span class="moves">3</span> Moves
+        	<span class="moves">0</span> Moves
 
             <div class="restart">
-        		<i class="fa fa-repeat"></i>
-        	</div>
+        		    <i class="fa fa-repeat"></i>
+        	  </div>
         </section>
 
+        <section class="gameArea">
           <ul class="deck">
               <li class="card">
                   <i class="fa fa-diamond"></i>
@@ -84,6 +89,22 @@
                   <i class="fa fa-cube"></i>
               </li>
           </ul>
+        </section>
+
+        <div class="modal">
+          <div class="modal-content">
+            <span class="closeButton">X</span>
+            <h1>Congradulations!!!</h1>
+              <p>You were able to match all the cards and complete the game!</p>
+              <p class="endStats">It took
+                <span class="totalTime"></span> and
+                <span class="toalMoves"></span> moves in order to beat the game, which gives you a
+                <span class="stars"></span> rating.
+              </p>
+          </div>
+        </div>
+
+
 
     <script src="js/app.js"></script>
 </body>
