@@ -25,13 +25,15 @@
             <span id="seconds">00</span>
           </div>
 
-        	<ul class="stars">
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-        		<li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-            <li><i class="fa fa-star"></i></li>
-        	</ul>
+          <div class="score-board">
+          	<ul class="stars">
+          		<li><i class="fa fa-star"></i></li>
+          		<li><i class="fa fa-star"></i></li>
+          		<li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+              <li><i class="fa fa-star"></i></li>
+          	</ul>
+          </div>
 
         	<span class="move-counter">0</span> Moves
 
@@ -94,15 +96,21 @@
         </section>
 
         <div class="modal">
-          <div class="modal-content">
-            <span class="closeButton">X</span>
+          <div class="container w3-card-4 modal-info modal-dialog modal-dialog-centered">
             <h1>Congradulations!!!</h1>
               <p>You were able to match all the cards and complete the game!</p>
               <p class="endStats">It took
-                <span class="totalTime"></span> and
-                <span class="totalMoves"></span> moves in order to beat the game, which gives you a
-                <span class="stars"></span> rating.
+                <span id="totalTime"></span> and
+                <span id="totalMoves"></span> moves in order to beat the game, which gives you a
+                <span id="star-rating"></span> rating.
               </p>
+              <p>Would you like to try again?</p>
+              <div class="modal-footer">
+                <button type="button" id="new-game" class="btn btn-secondary" data-dismiss="modal">Try Again</button>
+                <button type="button" id="close-button" class="btn btn-primary">Close</button>
+              </div>
+              <!-- <button id="new-game">Try Again</button>
+              <button type="button" id="close-button" data-dismiss="modal" aria-label="Close"> -->
           </div>
         </div>
 

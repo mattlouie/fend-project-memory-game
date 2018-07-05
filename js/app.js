@@ -6,8 +6,11 @@ let objects = document.getElementsByClassName("card");
 const cardDeck = document.getElementById("deckSpace");
 const resetButton = document.querySelector(".restart");
 const modal = document.querySelector(".modal");
-const totalMoves = document.querySelector(".totalMoves")
-const totalTime = document.querySelector(".totalTime")
+const totalMoves = document.querySelector("#totalMoves");
+const totalTime = document.querySelector("#totalTime");
+const starRating = document.querySelector("#star-rating");
+const newGameButton = document.querySelector("#new-game");
+const closeButton = document.querySelector("#close-button");
 let cards = Array.from(objects);
 let moves = 0;
 let match = 0;
@@ -24,6 +27,8 @@ let interval;
 let matchedCards = [];
 let selectedCard = $("li.card");
 let deck = document.querySelector(".deck");
+let totalStarCounter = 0;
+
 
 /*
  * Display the cards on the page
@@ -40,6 +45,7 @@ function gameStart() {
   moves = 0;
 }
 
+// Shuffle Deck
 function shuffledDeck() {
   for (let i = 0; i < cards.length; i++) {
     deck.innerHTML = "";
@@ -67,24 +73,27 @@ function shuffle(array) {
     return array;
 }
 
+// Event listener to turn over cards
 for (let card of cards) {
   card.addEventListener("click", turnOver);
 }
 
-/* deck.addEventListener('click', event => {
-  const clickTarget = event.target;
-  if (isClickValid(clickTarget)) {
-      timeInterval();
-    }
-    toggleCard(clickTarget);
-    addToggleCard(clickTarget);
-    if (toggledCards.length === 2) {
-      checkMatch(clickTarget);
-      addMove();
-      //checkScore();
-    }
-  }); */
+function movesDisplay() {
+  if (moves > 50) {
+  stars[4].classList.add("hidden");
+  }
+  if (moves > 60) {
+    stars[3].classList.add("hidden");
+  }
+  if (moves > 70) {
+    stars[2].classList.add("hidden");
+  }
+  if (moves === 80) {
+    stars[1].classList.add("hidden");
+  }
+}
 
+// Turn over cards
 function turnOver() {
   // Timer starts on first move
   if (moves == 0) {
@@ -103,26 +112,7 @@ function turnOver() {
   }
 }
 
-resetButton.addEventListener('click', resetGame);
-
-/*function isClickValid(clickTarget) {
-  return (
-    clickTarget.classList.contains('card') &&
-    !clickTarget.classList.contains('match') &&
-    toggledCards.length < 2 &&
-    !toggledCards.includes(clickTarget)
-  );
-}
-
-function toggleCard(clickTarget) {
-  clickTarget.classList.toggle('open');
-  clickTarget.classList.toggle('show');
-}
-
-function addToggleCard(clickTarget) {
-  toggledCards.push(clickTarget);
-} */
-
+// Check to see if cards are a match
 function checkMatch() {
   setTimeout(function() {
     if (toggledCards[0].innerHTML === toggledCards[1].innerHTML) {
@@ -146,6 +136,8 @@ function addMove() {
   moves.innerHTML = moves;
 }
 
+/* Count up timer provided from StackOverflow */
+
 function timeInterval() {
   interval = setInterval(displayTime, 1000);
 }
@@ -165,22 +157,6 @@ function pad(val) {
   }
 }
 
-function movesDisplay() {
-  // if moves = 8 display 3 stars
-  if (moves > 8) {
-    stars[4].classList.add("hidden");
-  }
-  if (moves > 12) {
-    stars[3].classList.add("hidden");
-  }
-  if (moves > 16) {
-    stars[2].classList.add("hidden");
-  }
-  if (moves === 20) {
-    stars[1].classList.add("hidden");
-  }
-}
-
 function winGame() {
   clearInterval(interval);
   if (matchedCards.length == 16) {
@@ -190,13 +166,16 @@ function winGame() {
     stars.forEach(function(star) {
       if (!star.classList.contains('hidden')) {
         totalStarCounter++;
-        starRating.innerHTML = totalStarCounter + " stars.";
+        starRating.innerHTML = totalStarCounter + " stars";
       } else if (totalStarCounter == 1) {
-        starRating.innerHTML = totalStarCounter + " star."
+        starRating.innerHTML = totalStarCounter + " star"
       }
     });
   }
 }
+
+// Reset game function
+resetButton.addEventListener('click', resetGame);
 
 function resetGame () {
   //resetClockAndTime();
@@ -218,3 +197,11 @@ function resetStars() {
     star.style.display = 'inline';
   }
 }
+
+newGameButton.addEventListener('click', function(){
+  window.location = window.location;
+});
+
+closeButton.addEventListener('click', function(){
+  modal.style.display = 'none';
+});
